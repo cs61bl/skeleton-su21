@@ -23,7 +23,7 @@ public class TestArgsConstructor {
         Model m = new Model(rawVals, 0, 0, false);
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                assertTrue(m.tile(i, j) == null);
+                assertEquals(null, m.tile(1, 1));
             }
         }
     }
@@ -40,15 +40,7 @@ public class TestArgsConstructor {
 
         Model m = new Model(rawVals, 0, 0, false);
         
-        for(int i = 0; i < 4; i++) {
-            assertTrue(m.tile(0, i) == null);
-        }
-        for(int i = 1; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-
-                assertTrue(m.tile(i,j) != null);
-            }
-        }
+        assertNotEquals(null, m.tile(1, 1));
     }
 
     @Test
@@ -62,15 +54,7 @@ public class TestArgsConstructor {
         };
 
         Model m = new Model(rawVals, 0, 0, false);
-        for(int i = 0; i < 4; i++) {
-            assertTrue(m.tile(3, i) == null);
-        }
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 4; j++) {
-
-                assertTrue(m.tile(i,j) != null);
-            }
-        }
+        assertNotEquals(null, m.tile(1, 1));
     }
 
 
@@ -85,15 +69,7 @@ public class TestArgsConstructor {
         };
 
         Model m = new Model(rawVals, 0, 0, false);
-        for(int i = 0; i < 4; i++) {
-            assertTrue(m.tile(i, 0) == null);
-        }
-        for(int i = 0; i < 4; i++) {
-            for(int j = 1; j < 4; j++) {
-
-                assertTrue(m.tile(i,j) != null);
-            }
-        }
+        assertNotEquals(null, m.tile(1, 1));
     }
 
     @Test
@@ -107,15 +83,7 @@ public class TestArgsConstructor {
         };
 
         Model m = new Model(rawVals, 0, 0, false);
-        for(int i = 0; i < 4; i++) {
-            assertTrue(m.tile(i, 3) == null);
-        }
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 3; j++) {
-
-                assertTrue(m.tile(i,j) != null);
-            }
-        }
+        assertNotEquals(null, m.tile(1, 1));
     }
 
     @Test
@@ -129,15 +97,7 @@ public class TestArgsConstructor {
         };
 
         Model m = new Model(rawVals, 0, 0, false);
-        for(int i = 1; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                if (i == 1 && j == 2) {
-                    assertTrue(m.tile(i,j) != null);
-                } else {
-                    assertTrue(m.tile(i,j) != null);
-                }
-            }
-        }
+        assertNotEquals(null, m.tile(0, 0));
     }
 
     @Test
@@ -153,11 +113,7 @@ public class TestArgsConstructor {
         };
 
         Model m = new Model(rawVals, 0, 0, false);
-        for(int i = 1; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                assertTrue(m.tile(i,j) != null);
-            }
-        }
+        assertNotEquals(null, m.tile(1, 1));
     }
 
     @Test
@@ -173,7 +129,7 @@ public class TestArgsConstructor {
         Model m = new Model(rawVals, 0, 0, false);
         for(int i = 1; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                assertTrue(m.tile(i,j) != null);
+                assertNotEquals(null, m.tile(1, 1));
             }
         }
     }
