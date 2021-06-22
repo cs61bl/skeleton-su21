@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  *
  * @author Zoe Plaxco
  */
-public class TestArgsConstructor {
+public class TestEmptyConstructor {
 
     @Test
     /** Tests a board that is one element. */
