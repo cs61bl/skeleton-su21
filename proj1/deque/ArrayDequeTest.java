@@ -14,6 +14,6 @@ public class ArrayDequeTest {
      * you can define a new local variable. However, the autograder will
      * not grade that test. */
 
-    public static Deque<Integer> ad;
+    //public static Deque<Integer> ad = new ArrayDequeTest<Integer>();
 
 }
