@@ -73,6 +73,7 @@ public class Main {
     /**
      * Appends the first non-command argument in args
      * to a file called `story` in the .capers directory.
+     * It should also print the story at the end.
      * @param args Array in format: {'story', text}
      */
     public static void writeStory(String[] args) {
