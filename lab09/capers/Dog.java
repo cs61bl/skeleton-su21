@@ -11,6 +11,13 @@ public class Dog { // FIXME
     /** Folder that dogs live in. */
     static final File DOG_FOLDER = null; // FIXME
 
+    /** Age of dog. */
+    private int age;
+    /** Breed of dog. */
+    private String breed;
+    /** Name of dog. */
+    private String name;
+
     /**
      * Creates a dog object with the specified parameters.
      * @param name Name of dog
@@ -56,11 +63,4 @@ public class Dog { // FIXME
             "Woof! My name is %s and I am a %s! I am %d years old! Woof!",
             name, breed, age);
     }
-
-    /** Age of dog. */
-    private int age;
-    /** Breed of dog. */
-    private String breed;
-    /** Name of dog. */
-    private String name;
 }
