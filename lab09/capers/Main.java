@@ -61,7 +61,7 @@ public class Main {
      * (creates any necessary folders or files)
      * Remember: recommended structure (you do not have to follow):
      *
-     * .capers/ -- top level folder for all persistent data in your lab12 folder
+     * .capers/ -- top level folder for all persistent data in your lab09 folder
      *    - dogs/ -- folder containing all of the persistent data for dogs
      *    - story -- file containing the current story
      *
