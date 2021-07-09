@@ -18,9 +18,9 @@ public class Dog { // FIXME
      * @param age Age of dog
      */
     public Dog(String name, String breed, int age) {
-        _age = age;
-        _breed = breed;
-        _name = name;
+        this.age = age;
+        this.breed = breed;
+        this.name = name;
     }
 
     /**
@@ -38,7 +38,7 @@ public class Dog { // FIXME
      * Increases a dog's age and celebrates!
      */
     public void haveBirthday() {
-        _age += 1;
+        age += 1;
         System.out.println(toString());
         System.out.println("Happy birthday! Woof! Woof!");
     }
@@ -54,13 +54,13 @@ public class Dog { // FIXME
     public String toString() {
         return String.format(
             "Woof! My name is %s and I am a %s! I am %d years old! Woof!",
-            _name, _breed, _age);
+            name, breed, age);
     }
 
     /** Age of dog. */
-    private int _age;
+    private int age;
     /** Breed of dog. */
-    private String _breed;
+    private String breed;
     /** Name of dog. */
-    private String _name;
+    private String name;
 }
