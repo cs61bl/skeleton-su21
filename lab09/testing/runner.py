@@ -23,14 +23,30 @@ Usage: python3 runner.py OPTIONS TEST.in ...
 """
 
 USAGE = SHORT_USAGE + """\
-For each TEST.in, change to an empty directory, and execute the instructions
-in TEST.in.
 
+For each TEST.in, change to an empty directory, and execute the instructions
+in TEST.in.  Before executing an instruction, first replace any occurrence
+of ${VAR} with the current definition of VAR (see the D command below).
+Replace any occurrence of ${N} for non-negative decimal numeral N with
+the value of the Nth captured group in the last ">" command's expected
+output lines.  Undefined if the last ">" command did not end in "<<<*",
+or did not have the indicated group. N=0 indicates the entire matched string.
 
 The instructions each have one of the following forms:
+
    # ...  A comment, producing no effect.
+   I FILE Include.  Replace this statement with the contents of FILE,
+          interpreted relative to the directory containing the .in file.
+   C DIR  Create, if necessary, and switch to a subdirectory named DIR under
+          the main directory for this test.  If DIR is missing, changes
+          back to the default directory.  This command is principally
+          intended to let you set up remote repositories.
    T N    Set the timeout for capers commands in the rest of this test to N
           seconds.
+   + NAME F
+          Copy the contents of src/F into a file named NAME.
+   - NAME
+          Delete the file named NAME.
    > COMMAND OPERANDS
    LINE1
    LINE2
@@ -39,23 +55,42 @@ The instructions each have one of the following forms:
           Run capers.Main with COMMAND ARGUMENTS as its parameters.  Compare
           its output with LINE1, LINE2, etc., reporting an error if there is
           "sufficient" discrepency.  The <<< delimiter may be followed by
-          an asterisk (*), which case, the preceding lines are treated as
-          Python regular expressions and matched accordingly.
+          an asterisk (*), in which case, the preceding lines are treated as
+          Python regular expressions and matched accordingly. The directory
+          or JAR file containing the capers.Main program is assumed to be
+          in directory DIR specifed by --progdir (default is ..).
+   = NAME F
+          Check that the file named NAME is identical to src/F, and report an
+          error if not.
+   * NAME
+          Check that the file NAME does not exist, and report an error if it
+          does.
+   E NAME
+          Check that file or directory NAME exists, and report an error if it
+          does not.
+   D VAR "VALUE"
+          Defines the variable VAR to have the literal value VALUE.  VALUE is
+          taken to be a raw Python string (as in r"VALUE").  Substitutions are
+          first applied to VALUE.
 
-For each TEST.in, reports at most one error. With --keep, keeps the directories
-created for the tests (with names TEST.dir).
+For each TEST.in, reports at most one error.  Without the --show option,
+simply indicates tests passed and failed.  If N is postive, also prints details
+of the first N failing tests. With --show=all, shows details of all failing
+tests.  With --keep, keeps the directories created for the tests (with names
+TEST.dir).
 
 When finished, reports number of tests passed and failed, and the number of
 faulty TEST.in files."""
+
 
 DIRECTORY_LAYOUT_ERROR = """\
 Your {} folder is not where we expected it. Please ensure that your directory
 structure matches the following:
 
-sp21-s***
-  ├── library-sp21
+su21-s***
+  ├── library-su21
   │    └── ...
-  ├── lab6
+  ├── lab09
   │   ├── capers
   │   ├── testing <==== This should be your CWD
   │   │    ├── runner.py
@@ -63,15 +98,15 @@ sp21-s***
   │   └── ...
   └── ...
 
-Note your CWD must be `sp21-s***/lab6/testing`
+Note your CWD must be `su21-s***/lab09/testing`
 
 Also check that your REPO_DIR environment variable is the path to your
-`sp21-s***` directory. You can check this by running the command:
+`su21-s***` directory. You can check this by running the command:
 
-    $ echo REPO_DIR
-    /Users/omarkhan902/cs61b/61b_sp21_stuff/sp21-s3
+    $ echo $REPO_DIR
+    /Users/sohumhulyalkar/Desktop/61b/su61b/su21-s3
 
-That's what mine looks like. Go back to lab1 if you are still having issues"""
+That's what mine looks like. Go back to lab9 if you are still having issues"""
 
 JAVA_COMMAND = "java"
 CAPERS_COMMAND = "capers.Main"
@@ -442,7 +477,7 @@ if __name__ == "__main__":
                 TIMEOUT = 100000
         if lib_dir is None:
             lib_dir = join(abspath(environ['REPO_DIR']),
-                           "library-sp21/javalib")
+                           "library-su21")
         else:
             lib_dir = join(abspath(getcwd()), abspath(lib_dir))
     except GetoptError:

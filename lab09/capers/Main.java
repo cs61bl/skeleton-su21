@@ -61,7 +61,7 @@ public class Main {
      * (creates any necessary folders or files)
      * Remember: recommended structure (you do not have to follow):
      *
-     * .capers/ -- top level folder for all persistent data in your lab12 folder
+     * .capers/ -- top level folder for all persistent data in your lab09 folder
      *    - dogs/ -- folder containing all of the persistent data for dogs
      *    - story -- file containing the current story
      *
@@ -73,6 +73,7 @@ public class Main {
     /**
      * Appends the first non-command argument in args
      * to a file called `story` in the .capers directory.
+     * It should also print the story at the end.
      * @param args Array in format: {'story', text}
      */
     public static void writeStory(String[] args) {
