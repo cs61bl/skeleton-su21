@@ -1,4 +1,4 @@
-ublic class UnionFind {
+public class UnionFind {
 
     /* TODO: Add instance variables here. */
 
